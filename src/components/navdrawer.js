@@ -1,9 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react';
+import styled, { css } from 'styled-components';
 import Link from 'gatsby-link';
 import Hamburger from './Hamburger';
 
 const Nav = styled.nav`
+  visibility: ${props => props.opened ? 'visibile': 'hidden'};
+  transform: ${props => props.opened ? 'matrix(1, 0, 0, 1, 0, 0)' : 'matrix(1, 0, 0, 1, 753, 0)'};
   position: fixed;
   right: 0;
   height: 100vh;
@@ -36,20 +38,38 @@ const NavItem = styled.li`
   overflow: hidden;
 `;
 
+const visible = css`
+  visibility: visible;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+`;
 
 
-const NavDrawer = () => (
-  <Nav>
-    <Hamburger />
-    <NavList>
-      <NavItem>Portraits</NavItem>
-      <NavItem>Architecture</NavItem>
-      <NavItem>Cityscapes</NavItem>
-      <NavItem>Lifestyle</NavItem>
-      <NavItem>Presets</NavItem>
-    </NavList>
-  </Nav>
+class NavDrawer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      opened: false
+    };
+  }
 
-);
+  toggle = () => {
+    this.setState({ opened: !this.state.opened });
+  }
+
+  render() {
+    return (
+      <Nav opened={this.state.opened}>
+        <Hamburger onClick={this.toggle} />
+        <NavList>
+          <NavItem>Portraits</NavItem>
+          <NavItem>Architecture</NavItem>
+          <NavItem>Cityscapes</NavItem>
+          <NavItem>Lifestyle</NavItem>
+          <NavItem>Presets</NavItem>
+        </NavList>
+      </Nav>
+    );
+  }
+}
 
 export default NavDrawer;

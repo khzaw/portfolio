@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Container = styled.div`
   opacity: 1;
@@ -29,6 +29,13 @@ const Line = styled.span`
   transition: all .2s cubic-bezier(0.615, 0.19, 0.305, 0.91) 0s;
 `;
 
+const spin = css`
+  background: #6e6e6e;
+  border-radius: 2px;
+  background-clip: padding-box;
+  transform: rotate(135deg);
+`
+
 const LineTop = Line.extend`
   top: 14px;
 `;
@@ -39,13 +46,13 @@ const LineBottom = Line.extend`
 
 
 class Hamburger extends Component {
-  onClick = () => {
-    console.log('onclick');
+  constructor(props) {
+    super(props);
   }
 
   render() {
     return (
-      <Container onClick={this.onClick}>
+      <Container onClick={this.props.onClick}>
         <LineTop />
         <LineBottom />
       </Container>
