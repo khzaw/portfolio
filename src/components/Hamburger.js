@@ -38,10 +38,37 @@ const spin = css`
 
 const LineTop = Line.extend`
   top: 14px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    border-radius: 2px;
+    background-clip: padding-box;
+    background: black;
+    z-index: 1;
+  }
 `;
 
 const LineBottom = Line.extend`
   bottom: 16px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    border-radius: 2px;
+    background-clip: padding-box;
+    background: black;
+    z-index: 1;
+    transition: all .12s cubic-bezier(0.615, 0.19, 0.305, 0.91) 0.85s;
+  }
 `;
 
 

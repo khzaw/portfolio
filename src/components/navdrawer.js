@@ -48,7 +48,7 @@ class NavDrawer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      opened: false
+      opened: true
     };
   }
 
